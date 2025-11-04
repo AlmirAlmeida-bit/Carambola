@@ -388,7 +388,7 @@ justify-content: center;
     gap: 3px;
 }
 .bg-1{
-    background-image: url(../img/background.png);
+    background-image: url(../img/background.webp);
 }
 .bg-2{
     background-image: url(../img/background-2.webp);
