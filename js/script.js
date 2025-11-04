@@ -44,22 +44,38 @@ document.addEventListener('DOMContentLoaded', function() {
         //Popup (se existir)
         var fundo = document.querySelector('.fundo');
         var logoPopup = document.querySelector('.popup .logo-popup');
+        var textoPopup = document.querySelector('.texto-popup');
         
         if (fundo && logoPopup) {
             // Verificar se o popup está visível ao carregar
             if (!fundo.classList.contains('esconder-popup')) {
                 document.body.classList.add('popup-aberto');
+                
+                // Aguardar o texto aparecer (1.5s) antes de permitir interação
+                setTimeout(function() {
+                    // Adicionar classe para indicar que está pronto para clicar
+                    if (textoPopup) {
+                        textoPopup.style.cursor = 'pointer';
+                    }
+                    if (logoPopup) {
+                        logoPopup.style.cursor = 'pointer';
+                    }
+                }, 1500);
             }
             
-            // Fechar popup ao clicar no logo (com efeito de explosão)
-            logoPopup.addEventListener('click', function (e) {
-                e.preventDefault();
-                
+            // Fechar popup ao clicar no logo ou texto (com efeito de explosão)
+            function iniciarExplosao() {
                 // Se não estiver explodindo ainda, iniciar a explosão
                 if (!logoPopup.classList.contains('explodindo')) {
+                    // Iniciar explosão do logo
                     logoPopup.classList.add('explodindo');
                     
-                    // Após a animação de explosão (0.8s), esconder o popup
+                    // Iniciar zoom out do texto sincronizado (mesma duração: 0.8s)
+                    if (textoPopup) {
+                        textoPopup.classList.add('saindo');
+                    }
+                    
+                    // Após a animação de explosão e zoom out (0.8s), esconder o popup
                     setTimeout(function() {
                         fundo.classList.add('escondendo');
                         
@@ -70,7 +86,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         }, 500);
                     }, 800);
                 }
-            });
+            }
+            
+            if (logoPopup) {
+                logoPopup.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    iniciarExplosao();
+                });
+            }
+            
+            if (textoPopup) {
+                textoPopup.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    iniciarExplosao();
+                });
+            }
             
             // Observar mudanças no popup (caso seja fechado de outra forma)
             var observer = new MutationObserver(function(mutations) {
