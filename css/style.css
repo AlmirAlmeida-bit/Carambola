@@ -26,7 +26,7 @@
 }
 
 #academia {
-    scroll-margin-top: -10px;
+    scroll-margin-top: 10px;
 }
 
 #planos {
@@ -38,11 +38,11 @@
 }
 
 #clientes {
-    scroll-margin-top: 140px;
+    scroll-margin-top: 130px;
 }
 
 #contato {
-    scroll-margin-top: 130px;
+    scroll-margin-top: 120px;
 }
 
 html {
@@ -172,7 +172,7 @@ justify-content: center;
 .header {
     background-color: #000000;
     width: 100%;
-    height: 100px;
+    height: 90px;
     display: flex;
     align-items: center;
     /*padding-top: 16px;
@@ -190,12 +190,19 @@ justify-content: center;
 /*Selecionando o .container que está DENTRO do header*/
 .header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     overflow: visible;
     width: 100%;
     height: 100%;
-    gap: 40px;
+    gap: clamp(40px, 8vw, 111px);
+}
+
+@media (min-width: 1201px) {
+    .header .container {
+        gap: clamp(30px, 6vw, 80px);
+        padding-left: clamp(20px, 4vw, 60px);
+    }
 }
 
 .logo {
@@ -203,8 +210,10 @@ justify-content: center;
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 10px 0;
+    padding: 0;
     max-width: 200px;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .logo a {
@@ -215,7 +224,7 @@ justify-content: center;
 
 .logo img {
     height: 100%;
-    max-height: 80px;
+    max-height: none;
     width: auto;
     object-fit: contain;
     display: block;
@@ -226,9 +235,15 @@ justify-content: center;
     align-items: center;
     height: 100%;
     gap: clamp(40px, 8vw, 111px);
-    margin-left: auto;
+    margin-left: 0;
     flex-wrap: nowrap;
     min-width: 0;
+}
+
+@media (min-width: 1201px) {
+    .menu {
+        gap: clamp(30px, 6vw, 80px);
+    }
 }
 
 .menu a {
@@ -272,7 +287,7 @@ justify-content: center;
    
     background-size: cover;
     background-position: top center;
-    height: calc(100vh - 105px);
+    height: calc(100vh - 95px);
     /*view height*/
     text-align: center;
     position: relative;
@@ -907,7 +922,7 @@ justify-content: center;
 .social {
     display: flex;
     justify-content: center;
-    column-gap: 25px;
+    column-gap: clamp(30px, 5vw, 50px);
     margin: 0;
 }
 
@@ -1161,11 +1176,12 @@ body.menu-aberto {
     }
 
     .logo img {
-        max-height: 70px;
+        max-height: 90px;
     }
 
     .header .container {
         gap: 15px;
+        justify-content: space-between;
     }
 
     .texto-e-imagem-academia {
@@ -1199,12 +1215,13 @@ body.menu-aberto {
     }
 
     .header {
-        height: 80px;
+        height: 60px;
     }
 
     .header .container {
         padding-left: 10px;
         padding-right: 10px;
+        justify-content: space-between;
     }
 
     .logo img {
@@ -1215,7 +1232,7 @@ body.menu-aberto {
         top: 0;
         height: 100vh;
         width: 100vw;
-        padding-top: 100px;
+        padding-top: 90px;
     }
 
     .menu a {
@@ -1224,7 +1241,7 @@ body.menu-aberto {
     }
 
     .banner {
-        height: calc(100vh - 80px);
+        height: calc(100vh - 60px);
         min-height: 350px;
         padding-bottom: clamp(8px, 1.5vh, 15px);
     }
@@ -1509,7 +1526,7 @@ body.menu-aberto {
     }
 
     .social {
-        column-gap: 15px;
+        column-gap: clamp(20px, 4vw, 30px);
     }
 
     .social img {
