@@ -51,11 +51,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.classList.add('popup-aberto');
             }
             
-            // Fechar popup ao clicar no logo
+            // Fechar popup ao clicar no logo (com efeito de explosão)
             logoPopup.addEventListener('click', function (e) {
                 e.preventDefault();
-                fundo.classList.add('esconder-popup');
-                document.body.classList.remove('popup-aberto');
+                
+                // Se não estiver explodindo ainda, iniciar a explosão
+                if (!logoPopup.classList.contains('explodindo')) {
+                    logoPopup.classList.add('explodindo');
+                    
+                    // Após a animação de explosão (0.8s), esconder o popup
+                    setTimeout(function() {
+                        fundo.classList.add('escondendo');
+                        
+                        // Após o fade out (0.5s), esconder completamente
+                        setTimeout(function() {
+                            fundo.classList.add('esconder-popup');
+                            document.body.classList.remove('popup-aberto');
+                        }, 500);
+                    }, 800);
+                }
             });
             
             // Observar mudanças no popup (caso seja fechado de outra forma)
