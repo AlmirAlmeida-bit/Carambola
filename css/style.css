@@ -126,12 +126,69 @@ justify-content: center;
 
 }
 .popup{
-
+ 
 position: relative;
 display: flex;
 align-items: center;
 justify-content: center;
+ 
+}
 
+.popup-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.texto-popup {
+    color: rgb(255, 251, 0);
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 3vw, 32px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    animation: zoomIn 1.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+}
+
+.texto-popup.saindo {
+    animation: zoomOut 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .popup .logo-popup{
