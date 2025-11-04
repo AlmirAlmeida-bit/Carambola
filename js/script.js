@@ -61,6 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         logoPopup.style.cursor = 'pointer';
                     }
                 }, 1500);
+            } else {
+                // Se o popup já estiver escondido, inicializar os Swipers imediatamente
+                inicializarSwipers();
             }
             
             // Fechar popup ao clicar no logo ou texto (com efeito de explosão)
@@ -79,10 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(function() {
                         fundo.classList.add('escondendo');
                         
-                        // Após o fade out (0.5s), esconder completamente
+                        // Após o fade out (0.5s), esconder completamente e inicializar Swipers
                         setTimeout(function() {
                             fundo.classList.add('esconder-popup');
                             document.body.classList.remove('popup-aberto');
+                            
+                            // Inicializar Swipers apenas após o popup ser fechado
+                            inicializarSwipers();
                         }, 500);
                     }, 800);
                 }
@@ -116,6 +122,59 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             observer.observe(fundo, { attributes: true });
+        }
+    }
+    
+    // Função para inicializar os Swipers (apenas após popup ser fechado)
+    var swipersInicializados = false;
+    function inicializarSwipers() {
+        if (swipersInicializados) {
+            return; // Já foram inicializados
+        }
+        
+        swipersInicializados = true;
+        
+        // Scroll para o topo
+        window.scrollTo(0, 0);
+        
+        // Inicializar Swiper principal
+        var swiperElement = document.querySelector(".mySwiper");
+        if (swiperElement) {
+            var swiper = new Swiper(".mySwiper", {
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                preloadImages: true,
+                updateOnWindowResize: true,
+            });
+            
+            // Mostrar o Swiper após inicialização
+            swiperElement.classList.add('swiper-inicializado');
+        }
+        
+        // Inicializar Swiper de Clientes
+        var clientesSwiperElement = document.querySelector(".clientes-swiper");
+        if (clientesSwiperElement) {
+            var clientesSwiper = new Swiper(".clientes-swiper", {
+                navigation: {
+                    nextEl: ".clientes-swiper .swiper-button-next",
+                    prevEl: ".clientes-swiper .swiper-button-prev",
+                },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                preloadImages: true,
+                updateOnWindowResize: true,
+            });
         }
     }
 });
