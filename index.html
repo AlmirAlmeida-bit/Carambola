@@ -391,52 +391,7 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <!-- Initialize Swiper -->
-    <script>
-    // Inicializar Swiper assim que o DOM estiver pronto
-    document.addEventListener('DOMContentLoaded', function() {
-        // Scroll para o topo (Swiper) ao carregar a página
-        window.scrollTo(0, 0);
-        
-        // Inicializar Swiper principal
-        var swiper = new Swiper(".mySwiper", {
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            // Garantir que o Swiper seja priorizado
-            preloadImages: true,
-            updateOnWindowResize: true,
-        });
-        
-        // Inicializar Swiper de Clientes
-        var clientesSwiper = new Swiper(".clientes-swiper", {
-            navigation: {
-                nextEl: ".clientes-swiper .swiper-button-next",
-                prevEl: ".clientes-swiper .swiper-button-prev",
-            },
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            preloadImages: true,
-            updateOnWindowResize: true,
-        });
-    });
-
-    // Também garantir scroll ao topo quando a página carregar completamente
-    window.addEventListener('load', function() {
-        window.scrollTo(0, 0);
-    });
-
-    </script>
+    <!-- Initialize Swiper - Será inicializado após o popup ser fechado -->
 
 </body>
 
