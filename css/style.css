@@ -52,7 +52,7 @@ html {
 
 body {
     background-color: var(--primary);
-    font-family: 'Lexend', sans-serif;
+  font-family: 'Lexend', sans-serif;
     text-transform: uppercase;
     /*faz o texto ficar maiúsculo*/
     overflow-x: hidden;
@@ -67,12 +67,12 @@ body.popup-aberto {
 }
 
 h1, h2, h3 {
-    font-weight: 500;
+  font-weight: 500;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 p {
-    font-weight: 300;
+  font-weight: 300;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -258,7 +258,7 @@ justify-content: center;
     gap: 3px;
 }
 .bg-1{
-    background-image: url(../img/background.webp);
+    background-image: url(../img/background.png);
 }
 .bg-2{
     background-image: url(../img/background-2.webp);
@@ -275,6 +275,7 @@ justify-content: center;
     height: calc(100vh - 105px);
     /*view height*/
     text-align: center;
+    position: relative;
 
     display: flex;
     align-items: flex-end;
@@ -298,6 +299,25 @@ justify-content: center;
 .banner p {
     font-size: clamp(16px, 2.5vw, 24px);
     line-height: 1.5;
+}
+
+.texto-banner-logo {
+    color: rgb(255, 251, 0);
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 9vw, 90px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    z-index: 10;
 }
 
 .banner a {
@@ -1366,26 +1386,49 @@ body.menu-aberto {
     .clientes-swiper {
         height: 350px;
         padding-bottom: 40px;
-        padding-left: 45px;
-        padding-right: 45px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .cliente-slide {
         padding: 20px;
+        align-items: center;
+        justify-content: center;
     }
 
     .cliente-logo {
         margin-bottom: 20px;
         height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
     }
 
     .cliente-logo img {
         max-width: 150px;
         max-height: 100px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .cliente-depoimento {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
     }
 
     .depoimento-texto {
         font-size: clamp(10px, 2.8vw, 13px);
+        padding-left: 40px;
+        padding-right: 40px;
+        text-align: center;
+        margin: 0 auto;
     }
 
     /* Ajustar setas do carrossel de clientes no mobile */
@@ -1399,11 +1442,11 @@ body.menu-aberto {
     }
 
     .clientes-swiper .swiper-button-next {
-        right: 8px;
+        right: 0;
     }
 
     .clientes-swiper .swiper-button-prev {
-        left: 8px;
+        left: 0;
     }
 
     .clientes-swiper .swiper-button-next::after,
