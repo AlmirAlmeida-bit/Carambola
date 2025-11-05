@@ -66,23 +66,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 inicializarSwipers();
             }
             
-            // Fechar popup ao clicar no logo ou texto (com efeito de explosão)
-            function iniciarExplosao() {
-                // Se não estiver explodindo ainda, iniciar a explosão
-                if (!logoPopup.classList.contains('explodindo')) {
-                    // Iniciar explosão do logo
-                    logoPopup.classList.add('explodindo');
+            // Fechar popup ao clicar no logo ou texto (com efeito de fade)
+            function iniciarFadeOut() {
+                // Se não estiver desaparecendo ainda, iniciar o fade out
+                if (!logoPopup.classList.contains('desaparecendo')) {
+                    // Iniciar fade out do logo e texto simultaneamente
+                    logoPopup.classList.add('desaparecendo');
                     
-                    // Iniciar zoom out do texto sincronizado (mesma duração: 0.8s)
                     if (textoPopup) {
-                        textoPopup.classList.add('saindo');
+                        textoPopup.classList.add('desaparecendo');
                     }
                     
-                    // Após a animação de explosão e zoom out (0.8s), esconder o popup
+                    // Após o fade out (0.6s), esconder o popup e revelar a aplicação
                     setTimeout(function() {
                         fundo.classList.add('escondendo');
                         
-                        // Após o fade out (0.5s), esconder completamente e inicializar Swipers
+                        // Após o fade out do fundo (0.5s), esconder completamente e inicializar Swipers
                         setTimeout(function() {
                             fundo.classList.add('esconder-popup');
                             document.body.classList.remove('popup-aberto');
@@ -90,21 +89,21 @@ document.addEventListener('DOMContentLoaded', function() {
                             // Inicializar Swipers apenas após o popup ser fechado
                             inicializarSwipers();
                         }, 500);
-                    }, 800);
+                    }, 600);
                 }
             }
             
             if (logoPopup) {
                 logoPopup.addEventListener('click', function (e) {
                     e.preventDefault();
-                    iniciarExplosao();
+                    iniciarFadeOut();
                 });
             }
             
             if (textoPopup) {
                 textoPopup.addEventListener('click', function (e) {
                     e.preventDefault();
-                    iniciarExplosao();
+                    iniciarFadeOut();
                 });
             }
             
