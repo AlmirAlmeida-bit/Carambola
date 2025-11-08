@@ -124,28 +124,34 @@ position: fixed;
 top:0;
 left: 0;
 z-index:9999;
-background-color: rgba(0, 0, 0, 0.551);
+background-color: rgba(0, 0, 0, 0.95);
 backdrop-filter: blur(7px);
 display: flex;
-align-items: center;
+align-items: flex-start;
 justify-content: center;
-
+overflow: hidden;
+/* Garantir contexto de blend para as carambolas */
+isolation: isolate;
 }
+
 .popup{
- 
 position: relative;
 display: flex;
-align-items: center;
+align-items: flex-start;
 justify-content: center;
- 
+width: 100%;
+height: 100%;
 }
 
 .popup-conteudo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-top: 3vh;
 }
 
 .texto-popup {
@@ -155,94 +161,102 @@ justify-content: center;
     font-size: clamp(18px, 3vw, 32px);
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 1), 0 0 20px rgba(0, 0, 0, 0.8);
     margin: 0;
-    padding: 0;
+    padding: 10px 20px;
     text-align: center;
-    animation: zoomIn 1.5s ease-out forwards;
+    z-index: 1000;
+    position: relative;
     opacity: 0;
+    max-width: 90%;
+    line-height: 1.3;
+    /* Garantir que a frase fique sempre visível acima das carambolas */
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    backdrop-filter: blur(2px);
 }
 
-@keyframes zoomIn {
-    0% {
-        transform: scale(0.3);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+.carambolas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    /* Otimizações de performance */
+    will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-
-
-
-
-.popup .logo-popup{
+.carambola-item {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    pointer-events: auto;
     cursor: pointer;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.popup .logo-popup:hover{
-    transform: scale(1.05);
-}
-
-.popup img{
-    max-width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    animation: gelatina 1s ease-out forwards;
     opacity: 0;
+    will-change: transform, opacity;
+    z-index: 1; /* Abaixo da frase que tem z-index 1000 */
 }
 
-/* Animação de gelatina ao carregar */
-@keyframes gelatina {
-    0% {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.05) skew(2deg, 2deg);
-        opacity: 0.9;
-    }
-    75% {
-        transform: scale(0.98) skew(-1deg, -1deg);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1) skew(0deg, 0deg);
-        opacity: 1;
+.carambola-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    background: transparent;
+    /* Otimizações de performance */
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.carambola-item:hover {
+    z-index: 100;
+}
+
+.carambola-item:hover img {
+    transform: scale(1.3);
+    filter: drop-shadow(0 8px 16px rgba(255, 251, 0, 0.8)) brightness(1.3) saturate(1.2);
+}
+
+@media (min-width: 768px) {
+    .carambola-item {
+        width: 80px;
+        height: 80px;
     }
 }
 
-/* Animação de fade out para logo e texto */
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.95);
+@media (min-width: 1024px) {
+    .carambola-item {
+        width: 140px;
+        height: 140px;
     }
 }
 
-.popup .logo-popup.desaparecendo img {
-    animation: fadeOut 0.6s ease-out forwards;
+@media (min-width: 1440px) {
+    .carambola-item {
+        width: 160px;
+        height: 160px;
+    }
 }
+
+
+
+
+
+
 
 .texto-popup.desaparecendo {
-    animation: fadeOut 0.6s ease-out forwards;
+    animation: fadeOut 0.3s ease-out forwards;
 }
 
 .fundo.escondendo {
-    animation: fadeOut 0.5s ease-out forwards;
+    animation: fadeOut 0.3s ease-out forwards;
 }
 
 @keyframes fadeOut {
@@ -375,34 +389,56 @@ justify-content: center;
     padding: 10px;
     gap: 3px;
 }
-.bg-1{
-    background-image: url(../img/background.webp);
-}
-.bg-2{
-    background-image: url(../img/background-2.webp);
-}
-.bg-3{
-    background-image: url(../img/background-3.webp);
-}
 .banner {
-    /*background-color: red;*/
-    /*background-repeat: no-repeat;*/
-   
-    background-size: cover;
-    background-position: top center;
     height: calc(100vh - 95px);
-    /*view height*/
     text-align: center;
     position: relative;
-
     display: flex;
     align-items: flex-end;
     justify-content: center;
     padding-bottom: clamp(15px, 2vh, 30px);
+    overflow: hidden;
     /* Priorizar renderização do Swiper */
     will-change: transform;
     transform: translateZ(0);
     contain: layout style paint;
+}
+
+.banner-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%) translateZ(0);
+    object-fit: cover;
+    z-index: 1;
+    /* Otimizações de performance */
+    will-change: transform;
+    backface-visibility: hidden;
+    /* Garantir que o vídeo cubra toda a área */
+    background: #000;
+    /* Fallback: se vídeo não carregar, mostrar poster como background */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Quando vídeo não carregar, usar poster como background */
+.banner-video:not([src]) {
+    background-image: var(--poster-image);
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    pointer-events: none;
 }
 
 .banner .container {
@@ -412,6 +448,8 @@ justify-content: center;
     justify-content: flex-end;
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 3;
 }
 
 .banner p {
