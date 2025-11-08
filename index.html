@@ -16,6 +16,9 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 
 <body id="inicio">
@@ -90,34 +93,36 @@
 <div class="swiper mySwiper">
         <div class="swiper-wrapper">
 
-           <div class="banner bg-1 swiper-slide">
+           <div class="banner swiper-slide" data-fallback-image="img/background.webp">
+                <video class="banner-video" muted loop playsinline preload="none" data-video="videos/video1.mp4" webkit-playsinline>
+                    <!-- Vídeo será carregado apenas quando o slide estiver ativo -->
+                    <!-- Poster removido - imagem só aparece como fallback em caso de erro -->
+                </video>
+                <div class="banner-overlay"></div>
                 <div class="container">
                     <h1 class="texto-banner-logo">Eventos ao Ar Livre</h1>
                 </div>
             </div>
 
-            <div class="banner bg-2 swiper-slide">
+            <div class="banner swiper-slide" data-fallback-image="img/background-2.webp">
+                <video class="banner-video" muted loop playsinline preload="none" data-video="videos/video2.mp4" webkit-playsinline>
+                    <!-- Vídeo será carregado apenas quando o slide estiver ativo -->
+                    <!-- Poster removido - imagem só aparece como fallback em caso de erro -->
+                </video>
+                <div class="banner-overlay"></div>
                 <div class="container">
                     <h1 class="texto-banner-logo">SHOWS</h1>
-                    <!--<h1>o melhor crossfit da cidade está aqui!</h1>
-                    <p>Na HardCore, não buscamos apenas treinos; buscamos a força que existe dentro de você. Seja você
-                        um atleta
-                        experiente ou um iniciante, nossa academia é o lugar onde a paixão pelo fitness encontra a
-                        determinação
-                        para superar limites.</p>
-                    <a href="#planos">Ver Planos</a>-->
                 </div>
             </div>
 
-            <div class="banner bg-3 swiper-slide">
+            <div class="banner swiper-slide" data-fallback-image="img/background-3.webp">
+                <video class="banner-video" muted loop playsinline preload="none" data-video="videos/video3.mp4" webkit-playsinline>
+                    <!-- Vídeo será carregado apenas quando o slide estiver ativo -->
+                    <!-- Poster removido - imagem só aparece como fallback em caso de erro -->
+                </video>
+                <div class="banner-overlay"></div>
                 <div class="container">
                     <h1 class="texto-banner-logo">FEIRAS E EXPOSIÇÕES</h1>
-                    <!--<h1>o melhor crossfit da cidade está aqui!</h1>
-                    <p>Na HardCore, não buscamos apenas treinos; buscamos a força que existe dentro de você. Seja você
-                        um atleta
-                        experiente ou um iniciante, nossa academia é o lugar onde a paixão pelo fitness encontra a
-                        determinação
-                        para superar limites.</p>-->
                 </div>
             </div>
 
@@ -378,8 +383,10 @@
 
         <div class="popup">
             <div class="popup-conteudo">
-                <a href="#" class="logo-popup"> <img src="img/logo.svg" alt=""></a>
                 <p class="texto-popup">PEGUE SUA CARAMBOLA E VEM CONOSCO</p>
+                <div class="carambolas-container" id="carambolasContainer">
+                    <!-- Carambolas serão adicionadas dinamicamente via JavaScript -->
+                </div>
             </div>
         </div>
 
