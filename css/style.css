@@ -31,7 +31,7 @@
     box-sizing: border-box;
 }
 
-#academia {
+#acarambola {
     scroll-margin-top: 10px;
 }
 
@@ -119,7 +119,7 @@ p {
 }
 .fundo{
 width: 100%;
-height: 100%;
+height: 100vh; /* Usar viewport height para garantir altura completa */
 position: fixed;
 top:0;
 left: 0;
@@ -140,7 +140,7 @@ display: flex;
 align-items: flex-start;
 justify-content: center;
 width: 100%;
-height: 100%;
+height: 100vh; /* Usar viewport height para garantir altura completa */
 }
 
 .popup-conteudo {
@@ -149,7 +149,7 @@ height: 100%;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Usar viewport height para garantir altura completa */
     position: relative;
     padding-top: 3vh;
 }
@@ -182,7 +182,7 @@ height: 100%;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100%; /* Usar 100% da altura do pai (popup-conteudo) */
     overflow: hidden;
     pointer-events: none;
     /* Otimizações de performance */
@@ -193,8 +193,8 @@ height: 100%;
 
 .carambola-item {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 60px; /* Tamanho padrão - será sobrescrito dinamicamente */
+    height: 60px; /* Tamanho padrão - será sobrescrito dinamicamente */
     pointer-events: auto;
     cursor: pointer;
     opacity: 0;
@@ -496,7 +496,7 @@ height: 100%;
     opacity: 1;
 }
 
-.academia .container {
+.acarambola .container {
     display: flex;
     align-items: flex-start;
     /*espaçamento entre os filhos*/
@@ -552,7 +552,7 @@ height: 100%;
     flex-direction: column;
 }
 
-.academia .conteudo-academia {
+.acarambola .conteudo-academia {
     flex: 1;
     min-width: 0;
     overflow: hidden;
@@ -561,7 +561,7 @@ height: 100%;
     text-align: left;
 }
 
-.academia .imagem-academia {
+.acarambola .imagem-academia {
     flex-shrink: 0;
     overflow: hidden;
     display: flex;
@@ -569,7 +569,7 @@ height: 100%;
     width: 100%;
 }
 
-.academia .imagem-academia img {
+.acarambola .imagem-academia img {
     max-width: 100%;
     height: auto;
     width: 100%;
@@ -650,12 +650,12 @@ height: 100%;
     display: block;
 }
 
-.academia .conteudo-academia h2 {
+.acarambola .conteudo-academia h2 {
     margin-top: 0;
     margin-bottom: 16px;
 }
 
-.academia .conteudo-academia p {
+.acarambola .conteudo-academia p {
     margin-top: 12px;
     margin-bottom: 12px;
 }
@@ -1230,7 +1230,7 @@ body.menu-aberto {
 }
 
 @media (max-width: 900px) {
-    .academia .container {
+    .acarambola .container {
         flex-direction: column;
         row-gap: 40px;
     }
@@ -1240,7 +1240,7 @@ body.menu-aberto {
         width: 100%;
     }
 
-    .academia .conteudo-academia {
+    .acarambola .conteudo-academia {
         max-width: 100%;
         width: 100%;
         text-align: left;
@@ -1406,7 +1406,7 @@ body.menu-aberto {
         font-size: clamp(10px, 2.8vw, 13px);
     }
 
-    .academia .container {
+    .acarambola .container {
         padding-top: clamp(30px, 5vw, 50px);
         padding-bottom: clamp(30px, 5vw, 50px);
     }
